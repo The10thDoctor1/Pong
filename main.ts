@@ -1,6 +1,6 @@
 let paddle_x = 1
 let PADDLE_Y = 4
-let PADDLE_LENGTH = 3
+let PADDLE_LENGTH = 2
 let ball_x = 2
 let ball_y = 2
 let change_x = 0
@@ -23,8 +23,10 @@ input.onButtonPressed(Button.B, function button_pressed_b() {
 })
 function render() {
     basic.clearScreen()
+    //  draw ball
     led.plot(ball_x, ball_y)
-    for (let i = 0; i < 3; i++) {
+    //  draw paddle
+    for (let i = 0; i < PADDLE_LENGTH; i++) {
         led.plot(paddle_x + i, PADDLE_Y)
     }
     basic.pause(step_duration)
@@ -39,6 +41,24 @@ basic.forever(function loop() {
     ball_y = ball_y + change_y
     if (ball_y == 0) {
         change_y = 1
+    }
+    
+    //  bouncing ball by 2 long paddle (WIP)
+    if (ball_y == 3 && PADDLE_LENGTH == 2) {
+        if (ball_x == 1 && led.point(1, 4)) {
+            change_y = -1
+        } else if (ball_y == 3 && PADDLE_LENGTH == 2) {
+            if (ball_x == 2 && led.point(2, 4)) {
+                change_y = -1
+            } else if (ball_y == 3 && PADDLE_LENGTH == 2) {
+                if (ball_x == 3 && led.point(3, 4)) {
+                    change_y = -1
+                }
+                
+            }
+            
+        }
+        
     }
     
     render()

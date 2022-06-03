@@ -1,6 +1,6 @@
 paddle_x = 1
 PADDLE_Y = 4
-PADDLE_LENGTH = 3
+PADDLE_LENGTH = 2
 ball_x = 2
 ball_y = 2
 change_x = 0
@@ -25,8 +25,10 @@ input.on_button_pressed(Button.B, button_pressed_b)
 def render():
     basic.clear_screen()
 
+    # draw ball
     led.plot(ball_x, ball_y)
-    for i in range(3):
+    # draw paddle
+    for i in range(PADDLE_LENGTH):
         led.plot(paddle_x + i, PADDLE_Y)
           
     basic.pause(step_duration)
@@ -43,6 +45,21 @@ def loop():
 
     if ball_y == 0:
         change_y = 1
+
+    # bouncing ball by 2 long paddle (WIP)
+    if ball_y == 3 and PADDLE_LENGTH == 2:
+        if ball_x == 1 and led.point(1, 4):
+            change_y = -1
+
+        else:
+            if ball_y == 3 and PADDLE_LENGTH == 2:
+                if ball_x == 2 and led.point(2, 4):
+                    change_y = -1
+
+                else:
+                    if ball_y == 3 and PADDLE_LENGTH == 2:
+                        if ball_x == 3 and led.point(3, 4):
+                            change_y = -1
 
     render() 
 
