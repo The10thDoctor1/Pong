@@ -33,13 +33,16 @@ def render():
 
 
 def loop():
-    global ball_x, ball_y
+    global ball_x, ball_y, change_y
 
     # input processing happens asynchronously
 
     # update
     ball_x = ball_x + change_x
     ball_y = ball_y + change_y
+
+    if ball_y == 0:
+        change_y = 1
 
     render() 
 
