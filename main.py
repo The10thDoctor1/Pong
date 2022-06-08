@@ -1,6 +1,6 @@
 paddle_x = 1
 PADDLE_Y = 4
-PADDLE_LENGTH = 2
+PADDLE_LENGTH = 3
 ball_x = 2
 ball_y = 2
 change_x = 0
@@ -32,59 +32,14 @@ def update():
     ball_x += change_x
     ball_y += change_y
 
+    if ball_y == PADDLE_Y and ball_x in range(paddle_x, paddle_x + PADDLE_LENGTH):
+        change_y *= -1
+        ball_y += 2 * change_y
+    else:
+        pass # game over
+
     if ball_y == 0:
-        change_y = 1
-
-    # bouncing ball by 2 long paddle
-    if ball_y == 3 and PADDLE_LENGTH == 2:
-        if ball_x == 0 and led.point(0, 4):
-            change_y = -1
-
-        else:
-            if ball_y == 3 and PADDLE_LENGTH == 2:
-                if ball_x == 1 and led.point(1, 4):
-                    change_y = -1
-
-                else:
-                    if ball_y == 3 and PADDLE_LENGTH == 2:
-                        if ball_x == 2 and led.point(2, 4):
-                            change_y = -1
-
-                        else:
-                            if ball_y == 3 and PADDLE_LENGTH == 2:
-                                if ball_x == 3 and led.point(3, 4):
-                                    change_y = -1
-
-                                else:
-                                    if ball_y == 3 and PADDLE_LENGTH == 2:
-                                        if ball_x == 4 and led.point(4, 4):
-                                            change_y = -1
-
-    # bouncing ball by 3 long paddle
-    if ball_y == 3 and PADDLE_LENGTH == 3:
-        if ball_x == 0 and led.point(0, 4):
-            change_y = -1
-            
-        else:
-            if ball_y == 3 and PADDLE_LENGTH == 3:
-                if ball_x == 1 and led.point(1, 4):
-                    change_y = -1
-
-                else:
-                    if ball_y == 3 and PADDLE_LENGTH == 3:
-                        if ball_x == 2 and led.point(2, 4):
-                            change_y = -1
-
-                        else:
-                            if ball_y == 3 and PADDLE_LENGTH == 3:
-                                if ball_x == 3 and led.point(3, 4):
-                                    change_y = -1
-
-                                else:
-                                    if ball_y == 3 and PADDLE_LENGTH == 3:
-                                        if ball_x == 4 and led.point(4, 4):
-                                            change_y = -1
-
+        change_y *= -1
 
 def render():
     basic.clear_screen()
