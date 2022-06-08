@@ -21,24 +21,10 @@ input.onButtonPressed(Button.B, function button_pressed_b() {
     }
     
 })
-function render() {
-    basic.clearScreen()
-    //  draw ball
-    led.plot(ball_x, ball_y)
-    //  draw paddle
-    for (let i = 0; i < PADDLE_LENGTH; i++) {
-        led.plot(paddle_x + i, PADDLE_Y)
-    }
-    basic.pause(step_duration)
-}
-
-render()
-basic.forever(function loop() {
+function update() {
     
-    //  input processing happens asynchronously
-    //  update
-    ball_x = ball_x + change_x
-    ball_y = ball_y + change_y
+    ball_x += change_x
+    ball_y += change_y
     if (ball_y == 0) {
         change_y = 1
     }
@@ -99,5 +85,22 @@ basic.forever(function loop() {
         
     }
     
+}
+
+function render() {
+    basic.clearScreen()
+    //  draw ball
+    led.plot(ball_x, ball_y)
+    //  draw paddle
+    for (let i = 0; i < PADDLE_LENGTH; i++) {
+        led.plot(paddle_x + i, PADDLE_Y)
+    }
+    basic.pause(step_duration)
+}
+
+render()
+basic.forever(function loop() {
+    //  input processing happens asynchronously
+    update()
     render()
 })

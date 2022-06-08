@@ -22,26 +22,11 @@ def button_pressed_b():
 input.on_button_pressed(Button.B, button_pressed_b)
 
 
-def render():
-    basic.clear_screen()
-
-    # draw ball
-    led.plot(ball_x, ball_y)
-    # draw paddle
-    for i in range(PADDLE_LENGTH):
-        led.plot(paddle_x + i, PADDLE_Y)
-          
-    basic.pause(step_duration)
-
-
-def loop():
+def update():
     global ball_x, ball_y, change_y
 
-    # input processing happens asynchronously
-
-    # update
-    ball_x = ball_x + change_x
-    ball_y = ball_y + change_y
+    ball_x += change_x
+    ball_y += change_y
 
     if ball_y == 0:
         change_y = 1
@@ -51,7 +36,7 @@ def loop():
         if ball_x == 0 and led.point(0, 4):
             change_y = -1
 
-        else: 
+        else:
             if ball_y == 3 and PADDLE_LENGTH == 2:
                 if ball_x == 1 and led.point(1, 4):
                     change_y = -1
@@ -75,7 +60,7 @@ def loop():
     if ball_y == 3 and PADDLE_LENGTH == 3:
         if ball_x == 0 and led.point(0, 4):
             change_y = -1
-        
+            
         else:
             if ball_y == 3 and PADDLE_LENGTH == 3:
                 if ball_x == 1 and led.point(1, 4):
@@ -96,6 +81,22 @@ def loop():
                                         if ball_x == 4 and led.point(4, 4):
                                             change_y = -1
 
+
+def render():
+    basic.clear_screen()
+
+    # draw ball
+    led.plot(ball_x, ball_y)
+    # draw paddle
+    for i in range(PADDLE_LENGTH):
+        led.plot(paddle_x + i, PADDLE_Y)
+          
+    basic.pause(step_duration)
+
+
+def loop():
+    # input processing happens asynchronously
+    update()
     render() 
 
 
