@@ -43,16 +43,26 @@ basic.forever(function loop() {
         change_y = 1
     }
     
-    //  bouncing ball by 2 long paddle (WIP)
+    //  bouncing ball by 2 long paddle
     if (ball_y == 3 && PADDLE_LENGTH == 2) {
-        if (ball_x == 1 && led.point(1, 4)) {
+        if (ball_x == 0 && led.point(0, 4)) {
             change_y = -1
         } else if (ball_y == 3 && PADDLE_LENGTH == 2) {
-            if (ball_x == 2 && led.point(2, 4)) {
+            if (ball_x == 1 && led.point(1, 4)) {
                 change_y = -1
             } else if (ball_y == 3 && PADDLE_LENGTH == 2) {
-                if (ball_x == 3 && led.point(3, 4)) {
+                if (ball_x == 2 && led.point(2, 4)) {
                     change_y = -1
+                } else if (ball_y == 3 && PADDLE_LENGTH == 2) {
+                    if (ball_x == 3 && led.point(3, 4)) {
+                        change_y = -1
+                    } else if (ball_y == 3 && PADDLE_LENGTH == 2) {
+                        if (ball_x == 4 && led.point(4, 4)) {
+                            change_y = -1
+                        }
+                        
+                    }
+                    
                 }
                 
             }

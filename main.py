@@ -46,20 +46,30 @@ def loop():
     if ball_y == 0:
         change_y = 1
 
-    # bouncing ball by 2 long paddle (WIP)
+    # bouncing ball by 2 long paddle
     if ball_y == 3 and PADDLE_LENGTH == 2:
-        if ball_x == 1 and led.point(1, 4):
+        if ball_x == 0 and led.point(0, 4):
             change_y = -1
 
-        else:
+        else: 
             if ball_y == 3 and PADDLE_LENGTH == 2:
-                if ball_x == 2 and led.point(2, 4):
+                if ball_x == 1 and led.point(1, 4):
                     change_y = -1
 
                 else:
                     if ball_y == 3 and PADDLE_LENGTH == 2:
-                        if ball_x == 3 and led.point(3, 4):
+                        if ball_x == 2 and led.point(2, 4):
                             change_y = -1
+
+                        else:
+                            if ball_y == 3 and PADDLE_LENGTH == 2:
+                                if ball_x == 3 and led.point(3, 4):
+                                    change_y = -1
+
+                                else:
+                                    if ball_y == 3 and PADDLE_LENGTH == 2:
+                                        if ball_x == 4 and led.point(4, 4):
+                                            change_y = -1
 
     render() 
 
