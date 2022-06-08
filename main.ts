@@ -1,6 +1,6 @@
 let paddle_x = 1
 let PADDLE_Y = 4
-let PADDLE_LENGTH = 3
+let PADDLE_LENGTH = 2
 let ball_x = 2
 let ball_y = 2
 let change_x = 0
@@ -32,11 +32,12 @@ function update() {
     if (ball_y == PADDLE_Y && _py.range(paddle_x, paddle_x + PADDLE_LENGTH).indexOf(ball_x) >= 0) {
         change_y *= -1
         ball_y += 2 * change_y
-    } else {
-        
     }
     
-    //  game over
+    if (ball_y == 5) {
+        game.gameOver()
+    }
+    
     if (ball_y == 0) {
         change_y *= -1
     }

@@ -1,6 +1,6 @@
 paddle_x = 1
 PADDLE_Y = 4
-PADDLE_LENGTH = 3
+PADDLE_LENGTH = 2
 ball_x = 2
 ball_y = 2
 change_x = 0
@@ -35,8 +35,9 @@ def update():
     if ball_y == PADDLE_Y and ball_x in range(paddle_x, paddle_x + PADDLE_LENGTH):
         change_y *= -1
         ball_y += 2 * change_y
-    else:
-        pass # game over
+
+    if ball_y == 5:
+        game.game_over()
 
     if ball_y == 0:
         change_y *= -1
