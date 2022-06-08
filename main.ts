@@ -10,14 +10,18 @@ let step_duration = 500
 input.onButtonPressed(Button.A, function button_pressed_a() {
     
     if (paddle_x > 0) {
-        paddle_x = paddle_x - 1
+        paddle_x -= 1
+        led.plot(paddle_x, PADDLE_Y)
+        led.unplot(paddle_x + PADDLE_LENGTH, PADDLE_Y)
     }
     
 })
 input.onButtonPressed(Button.B, function button_pressed_b() {
     
     if (paddle_x < 5 - PADDLE_LENGTH) {
-        paddle_x = paddle_x + 1
+        led.unplot(paddle_x, PADDLE_Y)
+        led.plot(paddle_x + PADDLE_LENGTH, PADDLE_Y)
+        paddle_x += 1
     }
     
 })
