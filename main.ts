@@ -2,9 +2,9 @@ let paddle_x = 1
 let PADDLE_Y = 4
 let PADDLE_LENGTH = 2
 let ball_x = 2
-let ball_y = 2
-let change_x = 0
-let change_y = -1
+let ball_y = 0
+let change_x = -1
+let change_y = 1
 let step_duration = 500
 //  game speed
 input.onButtonPressed(Button.A, function button_pressed_a() {
@@ -29,6 +29,7 @@ function update() {
     
     ball_x += change_x
     ball_y += change_y
+    //  bounce off paddle
     if (ball_y == PADDLE_Y && _py.range(paddle_x, paddle_x + PADDLE_LENGTH).indexOf(ball_x) >= 0) {
         change_y *= -1
         ball_y += 2 * change_y
@@ -38,8 +39,17 @@ function update() {
         game.gameOver()
     }
     
+    //  bounce off top wall
     if (ball_y == 0) {
         change_y *= -1
+    }
+    
+    if (ball_x == 4) {
+        change_x = -1
+    }
+    
+    if (ball_x == 0) {
+        change_x = 1
     }
     
 }
