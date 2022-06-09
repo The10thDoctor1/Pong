@@ -44,12 +44,9 @@ function update() {
         change_y *= -1
     }
     
-    if (ball_x == 4) {
-        change_x = -1
-    }
-    
-    if (ball_x == 0) {
-        change_x = 1
+    //  bounce off side walls
+    if (ball_x == 0 || ball_x == 4) {
+        change_x *= -1
     }
     
 }

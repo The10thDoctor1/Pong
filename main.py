@@ -43,12 +43,10 @@ def update():
     # bounce off top wall
     if ball_y == 0:
         change_y *= -1
+    # bounce off side walls
+    if ball_x == 0 or ball_x == 4:
+        change_x *= -1
 
-    if ball_x == 4:
-        change_x = -1
-
-    if ball_x == 0:
-        change_x = 1
 
 def render():
     basic.clear_screen()
