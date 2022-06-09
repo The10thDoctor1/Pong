@@ -47,21 +47,10 @@ function update() {
     }
     
     //  bounce off left paddle corner
-    if (ball_y == PADDLE_Y - 1 && ball_x == paddle_x - 1) {
+    if (ball_y == PADDLE_Y - 1 && (ball_x == paddle_x - 1 || ball_x == paddle_x + PADDLE_LENGTH)) {
         change_x *= -1
         change_y *= -1
         //  bounce off left wall again
-        if (ball_x == 0 || ball_x == 4) {
-            change_x *= -1
-        }
-        
-    }
-    
-    //  bounce off... i think you know which corner
-    if (ball_y == PADDLE_Y - 1 && ball_x == paddle_x + PADDLE_LENGTH) {
-        change_x *= -1
-        change_y *= -1
-        //  bounce off right wall again
         if (ball_x == 0 || ball_x == 4) {
             change_x *= -1
         }
