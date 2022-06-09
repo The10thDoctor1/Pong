@@ -52,6 +52,14 @@ def update():
         if ball_x == 0 or ball_x == 4:
             change_x *= -1
 
+    # bounce off... i think you know which corner
+    if ball_y == (PADDLE_Y - 1) and ball_x == (paddle_x + PADDLE_LENGTH):
+        change_x *= -1
+        change_y *= -1
+        # bounce off right wall again
+        if ball_x == 0 or ball_x == 4:
+            change_x *= -1
+
     # update ball position    
     ball_x += change_x
     ball_y += change_y
