@@ -2,7 +2,7 @@ paddle_x = 1
 PADDLE_Y = 4
 PADDLE_LENGTH = 2
 ball_x = 2
-ball_y = 0
+ball_y = 1
 change_x = -1
 change_y = 1
 step_duration = 500 # game speed
@@ -29,13 +29,9 @@ input.on_button_pressed(Button.B, button_pressed_b)
 def update():
     global ball_x, ball_y, change_x, change_y
 
-    ball_x += change_x
-    ball_y += change_y
-
     # bounce off paddle
-    if ball_y == PADDLE_Y and ball_x in range(paddle_x, paddle_x + PADDLE_LENGTH):
+    if ball_y == (PADDLE_Y - 1) and ball_x in range(paddle_x, paddle_x + PADDLE_LENGTH):
         change_y *= -1
-        ball_y += 2 * change_y
 
     if ball_y == 5:
         game.game_over()
@@ -43,9 +39,14 @@ def update():
     # bounce off top wall
     if ball_y == 0:
         change_y *= -1
+
     # bounce off side walls
     if ball_x == 0 or ball_x == 4:
         change_x *= -1
+
+    # update ball position    
+    ball_x += change_x
+    ball_y += change_y
 
 
 def render():
